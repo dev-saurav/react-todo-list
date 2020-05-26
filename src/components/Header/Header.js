@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Header() {
+export default function Header({ handleClickOpen }) {
   const classes = useStyles();
 
   return (
@@ -21,7 +21,7 @@ export default function Header() {
           <Typography variant="h6" className={classes.title}>
             My Todos
           </Typography>
-          <Button color="inherit">Add Item</Button>
+          <Button color="inherit" onClick={handleClickOpen}>Add Item</Button>
         </Toolbar>
       </AppBar>
     </div>

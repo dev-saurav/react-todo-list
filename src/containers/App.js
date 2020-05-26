@@ -11,34 +11,6 @@ const priority = {
 class App extends Component {
   state = {
     todos: [
-      {
-        id: "dfaffa",
-        title: "My first todo",
-        completed: true,
-        priority: priority.high,
-        createdOn: new Date()
-      },
-      {
-        id: "sffsfs",
-        title: "My second todo",
-        completed: false,
-        priority: priority.high,
-        createdOn: new Date()
-      },
-      {
-        id: "dfdfdfd",
-        title: "My third todo",
-        completed: false,
-        priority: priority.high,
-        createdOn: new Date()
-      },
-      {
-        id: "dfawererfa",
-        title: "My fourth todo",
-        completed: false,
-        priority: priority.high,
-        createdOn: new Date()
-      }
     ],
     searchString: ""
   };
@@ -62,6 +34,20 @@ class App extends Component {
       searchString: event.target.value
     });
   };
+  addTodo = item => {
+    let todos = [...this.state.todos]
+    const todo = {
+      id: (new Date()).toString(),
+      title: item,
+      completed: false,
+      priority: priority.low,
+      createdOn: new Date()
+    }
+    todos.unshift(todo);
+    this.setState({
+      todos: todos
+    })
+  }
   render() {
     let filteredList = this.state.todos.filter(todo =>
       todo.title.toLowerCase().includes(this.state.searchString.toLowerCase())
@@ -73,6 +59,7 @@ class App extends Component {
           toggleTodo={this.toggleTodo}
           deleteTodo={this.deleteTodo}
           searchTodo={this.searchTodo}
+          addTodo={this.addTodo}
         />
       </div>
     );
